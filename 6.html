@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scholarship Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        form {
+            width: 500px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+        }
+        fieldset {
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            padding: 15px;
+        }
+        legend {
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 6px;
+            margin-top: 5px;
+        }
+        .inline {
+            width: auto;
+        }
+        .buttons {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<form>
+    <!-- Personal Details -->
+    <fieldset>
+        <legend>Personal Information</legend>
+
+        <label>Full Name:
+            <input type="text" name="name" required>
+        </label>
+
+        <label>Email:
+            <input type="email" name="email" required>
+        </label>
+
+        <label>Phone Number:
+            <input type="tel" name="phone">
+        </label>
+
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="male" class="inline"> Male
+        <input type="radio" name="gender" value="female" class="inline"> Female
+        <input type="radio" name="gender" value="other" class="inline"> Other
+    </fieldset>
+
+    <!-- Academic Details -->
+    <fieldset>
+        <legend>Academic Information</legend>
+
+        <label>Course:</label>
+        <select name="course">
+            <option value="">--Select Course--</option>
+            <option>Bachelor's</option>
+            <option>Master's</option>
+            <option>PhD</option>
+        </select>
+
+        <label>Field of Study:</label>
+        <select name="field">
+            <option value="">--Select Field--</option>
+            <option>Engineering</option>
+            <option>Medicine</option>
+            <option>Arts</option>
+            <option>Commerce</option>
+        </select>
+
+        <label>Percentage/CGPA:
+            <input type="text" name="marks">
+        </label>
+    </fieldset>
+
+    <!-- Scholarship Preferences -->
+    <fieldset>
+        <legend>Scholarship Preferences</legend>
+
+        <label>Type of Scholarship:</label>
+        <input type="checkbox" name="scholarship" value="merit" class="inline"> Merit-based
+        <input type="checkbox" name="scholarship" value="need" class="inline"> Need-based
+        <input type="checkbox" name="scholarship" value="sports" class="inline"> Sports
+
+        <label>Mode of Study:</label>
+        <input type="radio" name="mode" value="online" class="inline"> Online
+        <input type="radio" name="mode" value="offline" class="inline"> Offline
+    </fieldset>
+
+    <!-- Submit -->
+    <div class="buttons">
+        <input type="submit" value="Register">
+        <input type="reset" value="Clear">
+    </div>
+</form>
+
+</body>
+</html>
+
+
+
