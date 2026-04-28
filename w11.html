@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 API Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2 { color: #333; }
+
+    /* Drag & Drop */
+    #dragBox {
+      width: 100px; height: 100px;
+      background: coral;
+      cursor: grab;
+      text-align: center;
+      line-height: 100px;
+      color: white;
+    }
+    #dropZone {
+      width: 200px; height: 200px;
+      border: 2px dashed #666;
+      margin-top: 10px;
+      text-align: center;
+      line-height: 200px;
+    }
+
+    /* Sections */
+    .section { margin-bottom: 40px; }
+    button { padding: 8px 12px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1>HTML5 APIs Demo</h1>
+
+  <!-- Drag and Drop -->
+  <div class="section">
+    <h2>Drag and Drop</h2>
+    <div id="dragBox" draggable="true">Drag me</div>
+    <div id="dropZone">Drop here</div>
+  </div>
+
+  <!-- Geolocation -->
+  <div class="section">
+    <h2>Geolocation</h2>
+    <button onclick="getLocation()">Get Location</button>
+    <p id="locationOutput"></p>
+  </div>
+
+  <!-- Web Storage -->
+  <div class="section">
+    <h2>Web Storage (localStorage)</h2>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <button onclick="saveName()">Save</button>
+    <button onclick="loadName()">Load</button>
+    <p id="storageOutput"></p>
+  </div>
+
+  <script>
+    /* ---------------- Drag & Drop ---------------- */
+    const dragBox = document.getElementById("dragBox");
+    const dropZone = document.getElementById("dropZone");
+
+    dragBox.addEventListener("dragstart", function(e) {
+      e.dataTransfer.setData("text", "dragBox");
+    });
+
+    dropZone.addEventListener("dragover", function(e) {
+      e.preventDefault(); // allow drop
+    });
+
+    dropZone.addEventListener("drop", function(e) {
+      e.preventDefault();
+      const data = e.dataTransfer.getData("text");
+      const draggedElement = document.getElementById(data);
+      dropZone.innerHTML = "";
+      dropZone.appendChild(draggedElement);
+    });
+
+    /* ---------------- Geolocation ---------------- */
+    function getLocation() {
+      const output = document.getElementById("locationOutput");
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            output.innerHTML =
+              "Latitude: " + position.coords.latitude +
+              "<br>Longitude: " + position.coords.longitude;
+          },
+          () => {
+            output.innerHTML = "Permission denied or unavailable.";
+          }
+        );
+      } else {
+        output.innerHTML = "Geolocation is not supported.";
+      }
+    }
+
+    /* ---------------- Web Storage ---------------- */
+    function saveName() {
+      const name = document.getElementById("nameInput").value;
+      localStorage.setItem("username", name);
+      alert("Name saved!");
+    }
+
+    function loadName() {
+      const name = localStorage.getItem("username");
+      document.getElementById("storageOutput").innerText =
+        name ? "Stored Name: " + name : "No name stored.";
+    }
+  </script>
+
+</body>
+</html>
